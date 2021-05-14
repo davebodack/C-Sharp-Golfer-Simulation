@@ -28,7 +28,7 @@ namespace C_Sharp_Golfer_Simulation
         string[] names = new string[10];
         int rndScore;
         int holesElapsed = 0;
-        int nameindex = 0;
+        int golfercount = 0;
 
         public MainWindow()
         {
@@ -60,27 +60,41 @@ namespace C_Sharp_Golfer_Simulation
             if (holesElapsed < 18)
             {
                 holesElapsed++;
-                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblScore")))
+                for (int i = 0; i < 10; i++)
                 {
                     rndScore = random.Next(-1, 2);
+                    golfers[i].score += rndScore;
+                }
 
-                    if (lbl.Content.ToString() == "E")
-                    {
-                        lbl.Content = rndScore.ToString();
-                    }
-                    else
-                    {
-                        lbl.Content = (Int32.Parse(lbl.Content.ToString()) + rndScore).ToString();
-                    }
+                Array.Sort(golfers, delegate (Golfer golfer1, Golfer golfer2)
+                {
+                    return golfer1.score.CompareTo(golfer2.score);
+                });
+                golfers.Reverse();
 
-                    if (lbl.Content.ToString() == "0")
+                golfercount = 0;
+                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
+                {
+                    lbl.Content = golfers[golfercount].name;
+                    golfercount++;
+                }
+
+                golfercount = 0;
+                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblScore")))
+                {
+                    if (golfers[golfercount].score == 0)
                     {
                         lbl.Content = "E";
                     }
-                    else if (Int32.Parse(lbl.Content.ToString()) > 0)
+                    else if (golfers[golfercount].score > 0)
                     {
-                        lbl.Content = "+" + lbl.Content.ToString();
+                        lbl.Content = "+" + golfers[golfercount].score.ToString();
                     }
+                    else
+                    {
+                        lbl.Content = golfers[golfercount].score.ToString();
+                    }
+                    golfercount++;
                 }
 
                 foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblThru")))
