@@ -31,6 +31,7 @@ namespace C_Sharp_Golfer_Simulation
         int golfercount = 0;
         int placeCtr = 1;
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -73,96 +74,113 @@ namespace C_Sharp_Golfer_Simulation
                 });
                 golfers.Reverse();
 
-                //Fill in golfer places
-                golfercount = 0;
-                placeCtr = 1;
-                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => (lbl.Name.StartsWith("lblPlace"))))
+                setPlaceLabels();
+                setNameLabels();
+                setScoreLabels();
+                setThruLabels();
+            }
+          
+        }
+
+        private void setPlaceLabels()
+        {
+            //Fill in golfer places
+            golfercount = 0;
+            placeCtr = 1;
+            foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => (lbl.Name.StartsWith("lblPlace"))))
+            {
+                //If we're setting the value of the first place label
+                if (lbl.Name == "lblPlace1")
                 {
-                    //If we're setting the value of the first place label
-                    if (lbl.Name == "lblPlace1")
+                    if (golfers[0].score == golfers[1].score)
                     {
-                        if (golfers[0].score == golfers[1].score)
-                        {
-                            lbl.Content = "T1";
-                        }
-                        else
-                        {
-                            lbl.Content = "1";
-                            placeCtr++;
-                        }
-                        golfercount++;
+                        lbl.Content = "T1";
                     }
-                    //If we're setting the value of the tenth place label
-                    else if (lbl.Name == "lblPlace10")
+                    else
                     {
-                        if (golfers[8].score == golfers[9].score)
+                        lbl.Content = "1";
+                        placeCtr++;
+                    }
+                    golfercount++;
+                }
+                //If we're setting the value of the tenth place label
+                else if (lbl.Name == "lblPlace10")
+                {
+                    if (golfers[8].score == golfers[9].score)
+                    {
+                        lbl.Content = "T" + placeCtr.ToString();
+                    }
+                    else
+                    {
+                        placeCtr = golfercount + 1;
+                        lbl.Content = placeCtr.ToString();
+                    }
+                }
+                //If we're setting any of the other place labels
+                else
+                {
+                    if (golfers[golfercount - 1].score == golfers[golfercount].score)
+                    {
+                        lbl.Content = "T" + placeCtr.ToString();
+                    }
+                    else
+                    {
+                        placeCtr = golfercount + 1;
+                        if (golfers[golfercount].score == golfers[golfercount + 1].score)
                         {
                             lbl.Content = "T" + placeCtr.ToString();
                         }
                         else
                         {
-                            placeCtr = golfercount + 1;
                             lbl.Content = placeCtr.ToString();
                         }
                     }
-                    //If we're setting any of the other place labels
-                    else
-                    {
-                        if (golfers[golfercount - 1].score == golfers[golfercount].score)
-                        {
-                            lbl.Content = "T" + placeCtr.ToString();
-                        }
-                        else
-                        {
-                            placeCtr = golfercount + 1;
-                            if (golfers[golfercount].score == golfers[golfercount + 1].score)
-                            {
-                                lbl.Content = "T" + placeCtr.ToString();
-                            }
-                            else
-                            {
-                                lbl.Content = placeCtr.ToString();
-                            }
-                        }
-                        golfercount++;
-                    }
-                    
-                }
-
-                //Fill in golfer names
-                golfercount = 0;
-                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
-                {
-                    lbl.Content = golfers[golfercount].name;
                     golfercount++;
                 }
 
-                //Fill in golfer scores
-                golfercount = 0;
-                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblScore")))
-                {
-                    if (golfers[golfercount].score == 0)
-                    {
-                        lbl.Content = "E";
-                    }
-                    else if (golfers[golfercount].score > 0)
-                    {
-                        lbl.Content = "+" + golfers[golfercount].score.ToString();
-                    }
-                    else
-                    {
-                        lbl.Content = golfers[golfercount].score.ToString();
-                    }
-                    golfercount++;
-                }
-
-                //Fill in holes played
-                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblThru")))
-                {
-                    lbl.Content = holesElapsed.ToString();
-                }
             }
-          
+        }
+
+        private void setNameLabels()
+        {
+            //Fill in golfer names
+            golfercount = 0;
+            foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
+            {
+                lbl.Content = golfers[golfercount].name;
+                golfercount++;
+            }
+        }
+
+        private void setScoreLabels()
+        {
+            //Fill in golfer scores
+            golfercount = 0;
+            foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblScore")))
+            {
+                if (golfers[golfercount].score == 0)
+                {
+                    lbl.Content = "E";
+                }
+                else if (golfers[golfercount].score > 0)
+                {
+                    lbl.Content = "+" + golfers[golfercount].score.ToString();
+                }
+                else
+                {
+                    lbl.Content = golfers[golfercount].score.ToString();
+                }
+                golfercount++;
+            }
+        }
+
+        private void setThruLabels()
+        {
+            //Fill in holes played
+            foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblThru")))
+            {
+                lbl.Content = holesElapsed.ToString();
+            }
         }
     }
 }
