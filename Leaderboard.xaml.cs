@@ -28,11 +28,13 @@ namespace C_Sharp_Golfer_Simulation
         string[] names = new string[10];
         int randomScore;
         int roundCtr = 1;
+        int thruRoundCtr;
         int holesElapsed = 0;
         int golfercount = 0;
         int placeCtr = 1;
 
 
+        //Initializes the form based on the golfer list selected in MainWindow, populates the Name labels.
         public Leaderboard(string[] golfernames)
         {
             InitializeComponent();
@@ -53,7 +55,7 @@ namespace C_Sharp_Golfer_Simulation
             }
         }
 
-        
+        //Handles clicking the Start Simulation button, starts the timer ticking.
         private void btnStartSim_Click(object sender, RoutedEventArgs e)
         {
             holesElapsed = 0;
@@ -77,6 +79,7 @@ namespace C_Sharp_Golfer_Simulation
             btnStartSim.Visibility = Visibility.Hidden;
         }
 
+        //Generates the random scores on a hole, calls the set label functions which populate the labels
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (holesElapsed < 18)
@@ -85,12 +88,29 @@ namespace C_Sharp_Golfer_Simulation
                 for (int i = 0; i < 10; i++)
                 {
                     randomScore = random.Next(-1, 2);
-                    golfers[i].score += randomScore;
+                    golfers[i].totalscore += randomScore;
+                    if (roundCtr == 1)
+                    {
+                        golfers[i].rd1score += randomScore;
+                    }
+                    else if (roundCtr == 2)
+                    {
+                        golfers[i].rd2score += randomScore;
+                    }
+                    else if (roundCtr == 3)
+                    {
+                        golfers[i].rd3score += randomScore;
+                    }
+                    else
+                    {
+                        golfers[i].rd4score += randomScore;
+                    }
+
                 }
 
                 Array.Sort(golfers, delegate (Golfer golfer1, Golfer golfer2)
                 {
-                    return golfer1.score.CompareTo(golfer2.score);
+                    return golfer1.totalscore.CompareTo(golfer2.totalscore);
                 });
                 golfers.Reverse();
 
@@ -99,6 +119,7 @@ namespace C_Sharp_Golfer_Simulation
                 setScoreLabels();
                 setThruLabels();
             }
+
             else
             {
                 timer.Stop();
@@ -123,9 +144,9 @@ namespace C_Sharp_Golfer_Simulation
           
         }
 
+        //Fills in the place on the leaderboard each golfer occupies (first, second, third, etc.)
         private void setPlaceLabels()
         {
-            //Fill in golfer places
             golfercount = 0;
             placeCtr = 1;
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => (lbl.Name.StartsWith("lblPlace"))))
@@ -133,7 +154,7 @@ namespace C_Sharp_Golfer_Simulation
                 //If we're setting the value of the first place label
                 if (lbl.Name == "lblPlace1")
                 {
-                    if (golfers[0].score == golfers[1].score)
+                    if (golfers[0].totalscore == golfers[1].totalscore)
                     {
                         lbl.Content = "T1";
                     }
@@ -147,7 +168,7 @@ namespace C_Sharp_Golfer_Simulation
                 //If we're setting the value of the tenth place label
                 else if (lbl.Name == "lblPlace10")
                 {
-                    if (golfers[8].score == golfers[9].score)
+                    if (golfers[8].totalscore == golfers[9].totalscore)
                     {
                         lbl.Content = "T" + placeCtr.ToString();
                     }
@@ -160,14 +181,14 @@ namespace C_Sharp_Golfer_Simulation
                 //If we're setting any of the other place labels
                 else
                 {
-                    if (golfers[golfercount - 1].score == golfers[golfercount].score)
+                    if (golfers[golfercount - 1].totalscore == golfers[golfercount].totalscore)
                     {
                         lbl.Content = "T" + placeCtr.ToString();
                     }
                     else
                     {
                         placeCtr = golfercount + 1;
-                        if (golfers[golfercount].score == golfers[golfercount + 1].score)
+                        if (golfers[golfercount].totalscore == golfers[golfercount + 1].totalscore)
                         {
                             lbl.Content = "T" + placeCtr.ToString();
                         }
@@ -182,9 +203,9 @@ namespace C_Sharp_Golfer_Simulation
             }
         }
 
+        //Fills in the golfer name labels
         private void setNameLabels()
         {
-            //Fill in golfer names
             golfercount = 0;
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
             {
@@ -193,34 +214,72 @@ namespace C_Sharp_Golfer_Simulation
             }
         }
 
+        //Determines which labels need to have scores set and calls labelScoreSetter to do so.
         private void setScoreLabels()
         {
-            //Fill in golfer scores
-            golfercount = 0;
-            foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblScore")))
+            string[] labelTypeList = new string[] { "lblScore", "lblRd1Score", "lblRd2Score", "lblRd3Score", "lblRd4Score" };
+            thruRoundCtr = 0;
+            while (thruRoundCtr <= roundCtr)
             {
-                if (golfers[golfercount].score == 0)
+                golfercount = 0;
+                foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith(labelTypeList[thruRoundCtr])))
                 {
-                    lbl.Content = "E";
+                    if (thruRoundCtr == 0)
+                    {
+                        labelScoreSetter(lbl, golfers[golfercount].totalscore);
+                    }
+                    else if (thruRoundCtr == 1)
+                    {
+                        labelScoreSetter(lbl, golfers[golfercount].rd1score);
+                    }
+                    else if (thruRoundCtr == 2)
+                    {
+                        labelScoreSetter(lbl, golfers[golfercount].rd2score);
+                    }
+                    else if (thruRoundCtr == 3)
+                    {
+                        labelScoreSetter(lbl, golfers[golfercount].rd3score);
+                    }
+                    else
+                    {
+                        labelScoreSetter(lbl, golfers[golfercount].rd4score);
+                    }
+                    golfercount++;
                 }
-                else if (golfers[golfercount].score > 0)
-                {
-                    lbl.Content = "+" + golfers[golfercount].score.ToString();
-                }
-                else
-                {
-                    lbl.Content = golfers[golfercount].score.ToString();
-                }
-                golfercount++;
+                thruRoundCtr++;
             }
         }
 
+        //Fill in the number of holes played
         private void setThruLabels()
         {
-            //Fill in holes played
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblThru")))
             {
-                lbl.Content = holesElapsed.ToString();
+                if (holesElapsed < 18)
+                {
+                    lbl.Content = holesElapsed.ToString();
+                }
+                else
+                {
+                    lbl.Content = "F";  //Mr. Crocker wrote this function.
+                }
+            }
+        }
+
+        //This function is called by setScoreLabels, which handles setting the right label depending on the round.
+        private void labelScoreSetter(Label lbl, int score)
+        {
+            if (score == 0)
+            {
+                lbl.Content = "E";
+            }
+            else if (score > 0)
+            {
+                lbl.Content = "+" + score.ToString();
+            }
+            else
+            {
+                lbl.Content = score.ToString();
             }
         }
     }

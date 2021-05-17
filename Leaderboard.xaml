@@ -23,18 +23,26 @@
 			<RowDefinition Height="2*"/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width=".25*"/>
+			<ColumnDefinition Width=".5*"/>
 			<ColumnDefinition x:Name="colNames" Width="2*"/>
 			<ColumnDefinition/>
 			<ColumnDefinition/>
-		</Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".75*"/>
+            <ColumnDefinition Width=".75*"/>
+            <ColumnDefinition Width=".75*"/>
+            <ColumnDefinition Width=".75*"/>
+        </Grid.ColumnDefinitions>
 		
-		<Label x:Name="lblLeaderboard" Content="Leaderboard" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" FontSize="24"/>
+		<Label x:Name="lblLeaderboard" Content="Leaderboard" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="8" FontSize="24"/>
 		<Label Content="Name" Grid.Column="1" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
 		<Label Content="Score" Grid.Column="2" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
 		<Label Content="Thru" Grid.Column="3" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
-		
-		<Label x:Name="lblPlace1" Content="" Margin="10,0,10,0" Grid.Row="2" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <Label Content="Round 1" Grid.Column="4" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Round 2" Grid.Column="5" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Round 3" Grid.Column="6" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Round 4" Grid.Column="7" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+
+        <Label x:Name="lblPlace1" Content="" Margin="10,0,10,0" Grid.Row="2" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Label x:Name="lblPlace2" Content="" Margin="10,0,10,0" Grid.Row="3" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Label x:Name="lblPlace3" Content="" Margin="10,0,10,0" Grid.Row="4" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Label x:Name="lblPlace4" Content="" Margin="10,0,10,0" Grid.Row="5" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -56,29 +64,73 @@
 		<Label x:Name="lblName9" Grid.Row="10" Grid.Column="1" Margin="10,0,0,0" FontSize="22"/>
 		<Label x:Name="lblName10" Grid.Row="11" Grid.Column="1" Margin="10,0,0,0" FontSize="22"/>
 
-		<Label x:Name="lblScore1" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore2" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore4" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore5" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore6" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore8" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore9" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
-		<Label x:Name="lblScore10" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" FontSize="22" Content="E"/>
+		<Label x:Name="lblScore1" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore2" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore4" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore5" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore6" Grid.Row="7" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore7" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore8" Grid.Row="9" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore9" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblScore10" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" FontSize="22"/>
 
-		<Label x:Name="lblThru1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru3" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru4" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru6" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru7" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru8" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru9" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
-		<Label x:Name="lblThru10" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" FontSize="22" Content=""/>
+		<Label x:Name="lblThru1" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru2" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru3" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru4" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru5" Grid.Row="6" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru6" Grid.Row="7" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru7" Grid.Row="8" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru8" Grid.Row="9" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru9" Grid.Row="10" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
+		<Label x:Name="lblThru10" Grid.Row="11" Grid.Column="3" HorizontalAlignment="Center" FontSize="22"/>
 
-		<Button x:Name="btnStartSim" Content="Start Simulation" Grid.ColumnSpan="4" HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" FontSize="26" Click="btnStartSim_Click"/>
+        <Label x:Name="lblRd1Score1" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score2" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score3" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score4" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score5" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score6" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score7" Grid.Row="8" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score8" Grid.Row="9" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score9" Grid.Row="10" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd1Score10" Grid.Row="11" Grid.Column="4" HorizontalAlignment="Center" FontSize="18"/>
+
+        <Label x:Name="lblRd2Score1" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score2" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score3" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score4" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score5" Grid.Row="6" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score6" Grid.Row="7" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score7" Grid.Row="8" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score8" Grid.Row="9" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score9" Grid.Row="10" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd2Score10" Grid.Row="11" Grid.Column="5" HorizontalAlignment="Center" FontSize="18"/>
+
+        <Label x:Name="lblRd3Score1" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score2" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score3" Grid.Row="4" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score4" Grid.Row="5" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score5" Grid.Row="6" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score6" Grid.Row="7" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score7" Grid.Row="8" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score8" Grid.Row="9" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score9" Grid.Row="10" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd3Score10" Grid.Row="11" Grid.Column="6" HorizontalAlignment="Center" FontSize="18"/>
+
+        <Label x:Name="lblRd4Score1" Grid.Row="2" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score2" Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score3" Grid.Row="4" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score4" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score5" Grid.Row="6" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score6" Grid.Row="7" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score7" Grid.Row="8" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score8" Grid.Row="9" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score9" Grid.Row="10" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblRd4Score10" Grid.Row="11" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
+
+        <Button x:Name="btnStartSim" Content="Start Simulation" Grid.ColumnSpan="8" HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" FontSize="26" Click="btnStartSim_Click"/>
 	
 	</Grid>
 </Window>
