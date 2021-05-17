@@ -77,6 +77,7 @@ namespace C_Sharp_Golfer_Simulation
             }
             timer.Start();
             btnStartSim.Visibility = Visibility.Hidden;
+            stackSimSpeed.Visibility = Visibility.Visible;
         }
 
         //Generates the random scores on a hole, calls the set label functions which populate the labels
@@ -139,6 +140,7 @@ namespace C_Sharp_Golfer_Simulation
                         btnStartSim.Content = "Begin Fourth Round";
                     }
                     btnStartSim.Visibility = Visibility.Visible;
+                    stackSimSpeed.Visibility = Visibility.Hidden;
                 } 
             }
           
@@ -281,6 +283,13 @@ namespace C_Sharp_Golfer_Simulation
             {
                 lbl.Content = score.ToString();
             }
+        }
+
+
+        //This handles changing the slider value and changes the timer interval accordingly
+        private void sldrTimerInterval_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            timer.Interval = TimeSpan.FromSeconds(1 / sldrTimerInterval.Value);
         }
     }
 }
