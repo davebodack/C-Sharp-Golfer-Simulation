@@ -31,9 +31,10 @@
             <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width=".75*"/>
             <ColumnDefinition Width=".75*"/>
+            <ColumnDefinition Width=".75*"/>
         </Grid.ColumnDefinitions>
 		
-		<Label x:Name="lblLeaderboard" Content="Leaderboard" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="8" FontSize="24"/>
+		<Label x:Name="lblLeaderboard" Content="Leaderboard" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="9" FontSize="24"/>
 		<Label Content="Name" Grid.Column="1" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
 		<Label Content="Score" Grid.Column="2" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
 		<Label Content="Thru" Grid.Column="3" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
@@ -41,6 +42,7 @@
         <Label Content="Round 2" Grid.Column="5" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
         <Label Content="Round 3" Grid.Column="6" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
         <Label Content="Round 4" Grid.Column="7" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Playoff" Grid.Column="8" FontSize="18" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
 
         <Label x:Name="lblPlace1" Content="" Margin="10,0,10,0" Grid.Row="2" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
         <Label x:Name="lblPlace2" Content="" Margin="10,0,10,0" Grid.Row="3" FontSize="18" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -130,7 +132,18 @@
         <Label x:Name="lblRd4Score9" Grid.Row="10" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
         <Label x:Name="lblRd4Score10" Grid.Row="11" Grid.Column="7" HorizontalAlignment="Center" FontSize="18"/>
 
-        <Button x:Name="btnStartSim" Content="Start Simulation" Grid.ColumnSpan="8" HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" FontSize="26" Click="btnStartSim_Click"/>
+        <Label x:Name="lblPlayoffScore1" Grid.Row="2" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore2" Grid.Row="3" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore3" Grid.Row="4" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore4" Grid.Row="5" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore5" Grid.Row="6" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore6" Grid.Row="7" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore7" Grid.Row="8" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore8" Grid.Row="9" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore9" Grid.Row="10" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+        <Label x:Name="lblPlayoffScore10" Grid.Row="11" Grid.Column="8" HorizontalAlignment="Center" FontSize="18"/>
+
+        <Button x:Name="btnStartSim" Content="Start Simulation" Grid.ColumnSpan="9" HorizontalAlignment="Center" Grid.Row="12" VerticalAlignment="Center" FontSize="26" Click="btnStartSim_Click"/>
         <StackPanel x:Name="stackSimSpeed" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" Margin="5" Visibility="Hidden">
             <Label Content="Choose speed of simulation" HorizontalAlignment="Center" FontSize="16"/>
             <Slider x:Name="sldrTimerInterval" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="4" Minimum="0.5" Value="1" IsSnapToTickEnabled="True" Ticks="0.5, 1, 2, 4" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="1" ValueChanged="sldrTimerInterval_ValueChanged" TickPlacement="BottomRight"/>

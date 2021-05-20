@@ -14,6 +14,7 @@ namespace C_Sharp_Golfer_Simulation
         public int rd2score;
         public int rd3score;
         public int rd4score;
+        public int playoffscore;
         public int holesplayed;
 
         public Golfer(string newname)
@@ -24,6 +25,7 @@ namespace C_Sharp_Golfer_Simulation
             rd2score = 0;
             rd3score = 0;
             rd4score = 0;
+            playoffscore = 0;
             holesplayed = 0;
         }
     }
