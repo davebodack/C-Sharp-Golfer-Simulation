@@ -9,6 +9,7 @@ namespace C_Sharp_Golfer_Simulation
     class Golfer
     {
         public string name;
+        public string nationality;
         public int totalscore;
         public int rd1score;
         public int rd2score;
@@ -17,9 +18,10 @@ namespace C_Sharp_Golfer_Simulation
         public int playoffscore;
         public int holesplayed;
 
-        public Golfer(string newname)
+        public Golfer(string newname, string newnationality)
         {
             name = newname;
+            nationality = newnationality;
             totalscore = 0;
             rd1score = 0;
             rd2score = 0;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO;
 
 namespace C_Sharp_Golfer_Simulation
 {
@@ -27,6 +29,7 @@ namespace C_Sharp_Golfer_Simulation
         Golfer[] golfers = new Golfer[10];
         List<Golfer> playoffGolfers = new List<Golfer>();
         string[] names = new string[10];
+        string flagFileName;
         bool playoffFlag = false;
         int randomScore;
         int roundCtr = 1;
@@ -46,7 +49,27 @@ namespace C_Sharp_Golfer_Simulation
 
             for (int i = 0; i < 10; i++)
             {
-                golfers[i] = new Golfer(golfernames[i]);
+                //This manual checking will go away when we have a way of reading in files that have the players' nationalities.
+                if ((golfernames[i] == "Seve Ballesteros") || (golfernames[i] == "Jon Rahm"))
+                {
+                    golfers[i] = new Golfer(golfernames[i], "Spain");
+                }
+                else if (golfernames[i] == "Tyrrell Hatton")
+                {
+                    golfers[i] = new Golfer(golfernames[i], "England");
+                }
+                else if (golfernames[i] == "Gary Player")
+                {
+                    golfers[i] = new Golfer(golfernames[i], "South Africa");
+                }
+                else if (golfernames[i] == "Rory McIlroy")
+                {
+                    golfers[i] = new Golfer(golfernames[i], "Northern Ireland");
+                }
+                else
+                {
+                    golfers[i] = new Golfer(golfernames[i], "USA");
+                }
             }
 
             int j = 0;
@@ -62,6 +85,7 @@ namespace C_Sharp_Golfer_Simulation
         {            
             if (btnStartSim.Content.ToString() == "Return to Main Menu")
             {
+                lblPlayoffHeader.Visibility = Visibility.Hidden;
                 var mainWin = new MainWindow();
                 mainWin.Show();
                 this.Hide();
@@ -156,6 +180,7 @@ namespace C_Sharp_Golfer_Simulation
                     golfers.Reverse();
 
                     setPlaceLabels();
+                    setFlagImages();
                     setNameLabels();
                     setScoreLabels();
                     setThruLabels();
@@ -183,6 +208,7 @@ namespace C_Sharp_Golfer_Simulation
                     }
                     else if (golfers[0].totalscore == golfers[1].totalscore)
                     {
+                        lblPlayoffHeader.Visibility = Visibility.Visible;
                         btnStartSim.Content = "Begin Playoff";
                     }
                     else
@@ -214,6 +240,7 @@ namespace C_Sharp_Golfer_Simulation
                     }
 
                     setPlaceLabels();
+                    setFlagImages();
                     setNameLabels();
                     setScoreLabels();
                     setThruLabels();
@@ -318,6 +345,41 @@ namespace C_Sharp_Golfer_Simulation
             }   // End foreach lbl
 
         }   //End setPlaceLabels()
+
+
+        //Set the nationality flags displayed for each golfer
+        private void setFlagImages()
+        {
+            golfercount = 0;
+
+            foreach (Image img in mainGrid.Children.OfType<Image>().Where(img => img.Name.StartsWith("imgFlag")))
+            {
+                if (golfers[golfercount].nationality == "Spain")
+                {
+                    flagFileName = "Spain.png";
+                }
+                else if (golfers[golfercount].nationality == "South Africa")
+                {
+                    flagFileName = "South Africa.png";
+                }
+                else if (golfers[golfercount].nationality == "England")
+                {
+                    flagFileName = "England.png";
+                }
+                else if (golfers[golfercount].nationality == "Northern Ireland")
+                {
+                    flagFileName = "Ulster.png";
+                }
+                else
+                {
+                    flagFileName = "USA.png";
+                }
+
+                img.Source = new BitmapImage(new Uri("Resources/" + flagFileName, UriKind.Relative));
+                golfercount++;
+            }
+
+        }
 
 
         //Fills in the golfer name labels

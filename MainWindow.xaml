@@ -25,9 +25,9 @@
                 <RowDefinition/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <RadioButton x:Name="radModern" Content="Modern Golfers" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="radModern_Checked"/>
-            <RadioButton x:Name="radLegendary" Content="Legendary Golfers" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="RadLegendary_Checked"/>
-            <RadioButton x:Name="radCustom" Content="Custom Golfers" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28"/>
+            <RadioButton x:Name="radModern" Content="Modern Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="0" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="radModern_Checked"/>
+            <RadioButton x:Name="radLegendary" Content="Legendary Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="RadLegendary_Checked"/>
+            <RadioButton x:Name="radCustom" Content="Custom Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Visibility="Hidden"/>
             <Button x:Name="btnChooseGolfers" Content="Load Players" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" FontSize="36" Click="btnChooseGolfers_Click"/>
         </Grid>
         
