@@ -75,7 +75,7 @@ namespace C_Sharp_Golfer_Simulation
             int j = 0;
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
             {
-                lbl.Content = golfers[j].name;
+                lbl.Content = golfers[j].Name;
                 j++;
             }
         }
@@ -115,18 +115,18 @@ namespace C_Sharp_Golfer_Simulation
                     lblLeaderboard.Content = "Leaderboard- Sudden Death Playoff";
                     playoffFlag = true;
 
-                    if (golfers[0].totalscore == golfers[1].totalscore)
+                    if (golfers[0].TotalScore == golfers[1].TotalScore)
                     {
                         playoffGolfers.Add(golfers[0]);
                     }
                     for (int i = 1; i < golfers.Length - 1; i++)
                     {
-                        if (golfers[i].totalscore == golfers[i - 1].totalscore)
+                        if (golfers[i].TotalScore == golfers[i - 1].TotalScore)
                         {
                             playoffGolfers.Add(golfers[i]);
                         }
                     }
-                    if (golfers[golfers.Length - 2].totalscore == golfers[golfers.Length - 1].totalscore)
+                    if (golfers[golfers.Length - 2].TotalScore == golfers[golfers.Length - 1].TotalScore)
                     {
                         playoffGolfers.Add(golfers[golfers.Length - 1]);
                     }
@@ -153,29 +153,29 @@ namespace C_Sharp_Golfer_Simulation
                     for (int i = 0; i < 10; i++)
                     {
                         randomScore = random.Next(-1, 2);
-                        golfers[i].totalscore += randomScore;
+                        golfers[i].TotalScore += randomScore;
                         if (roundCtr == 1)
                         {
-                            golfers[i].rd1score += randomScore;
+                            golfers[i].Rd1Score += randomScore;
                         }
                         else if (roundCtr == 2)
                         {
-                            golfers[i].rd2score += randomScore;
+                            golfers[i].Rd2Score += randomScore;
                         }
                         else if (roundCtr == 3)
                         {
-                            golfers[i].rd3score += randomScore;
+                            golfers[i].Rd3Score += randomScore;
                         }
                         else
                         {
-                            golfers[i].rd4score += randomScore;
+                            golfers[i].Rd4Score += randomScore;
                         }
 
                     }
 
                     Array.Sort(golfers, delegate (Golfer golfer1, Golfer golfer2)
                     {
-                        return golfer1.totalscore.CompareTo(golfer2.totalscore);
+                        return golfer1.TotalScore.CompareTo(golfer2.TotalScore);
                     });
                     golfers.Reverse();
 
@@ -206,7 +206,7 @@ namespace C_Sharp_Golfer_Simulation
                     {
                         btnStartSim.Content = "Begin Fourth Round";
                     }
-                    else if (golfers[0].totalscore == golfers[1].totalscore)
+                    else if (golfers[0].TotalScore == golfers[1].TotalScore)
                     {
                         lblPlayoffHeader.Visibility = Visibility.Visible;
                         btnStartSim.Content = "Begin Playoff";
@@ -229,10 +229,10 @@ namespace C_Sharp_Golfer_Simulation
                     for (int i = 0; i < playoffGolfers.Count; i++)
                     {
                         randomScore = random.Next(-1, 2);
-                        playoffGolfers[i].playoffscore += randomScore;
+                        playoffGolfers[i].PlayoffScore += randomScore;
                     }
 
-                    playoffGolfers = playoffGolfers.OrderBy(o => o.playoffscore).ToList();
+                    playoffGolfers = playoffGolfers.OrderBy(o => o.PlayoffScore).ToList();
 
                     for (int i = 0; i < playoffGolfers.Count; i++)
                     {
@@ -249,7 +249,7 @@ namespace C_Sharp_Golfer_Simulation
                     golfercount = 0;
                     while (golfercount < playoffGolfers.Count)
                     {
-                        if (playoffGolfers[golfercount].playoffscore > playoffGolfers[0].playoffscore)
+                        if (playoffGolfers[golfercount].PlayoffScore > playoffGolfers[0].PlayoffScore)
                         {
                             playoffGolfers.RemoveAt(golfercount);
                         }
@@ -287,8 +287,8 @@ namespace C_Sharp_Golfer_Simulation
                     //If we're setting the value of the first place label
                     if (lbl.Name == "lblPlace1")
                     {
-                        if (((golfers[0].totalscore == golfers[1].totalscore) && !playoffFlag) ||
-                            ((golfers[0].playoffscore == golfers[1].playoffscore) && playoffFlag))
+                        if (((golfers[0].TotalScore == golfers[1].TotalScore) && !playoffFlag) ||
+                            ((golfers[0].PlayoffScore == golfers[1].PlayoffScore) && playoffFlag))
                         {
                             lbl.Content = "T1";
                         }
@@ -302,8 +302,8 @@ namespace C_Sharp_Golfer_Simulation
                     //If we're setting the value of the tenth place label
                     else if (lbl.Name == "lblPlace10")
                     {
-                        if (((golfers[8].totalscore == golfers[9].totalscore) && !playoffFlag) ||
-                            ((golfers[8].playoffscore == golfers[9].playoffscore) && playoffFlag))
+                        if (((golfers[8].TotalScore == golfers[9].TotalScore) && !playoffFlag) ||
+                            ((golfers[8].PlayoffScore == golfers[9].PlayoffScore) && playoffFlag))
                         {
                             lbl.Content = "T" + placeCtr.ToString();
                         }
@@ -317,8 +317,8 @@ namespace C_Sharp_Golfer_Simulation
                     else
                     {
                         //First check if tied with golfer above you on leaderboard, then...
-                        if (((golfers[golfercount - 1].totalscore == golfers[golfercount].totalscore) && !playoffFlag) ||
-                            ((golfers[golfercount - 1].playoffscore == golfers[golfercount].playoffscore) && playoffFlag))
+                        if (((golfers[golfercount - 1].TotalScore == golfers[golfercount].TotalScore) && !playoffFlag) ||
+                            ((golfers[golfercount - 1].PlayoffScore == golfers[golfercount].PlayoffScore) && playoffFlag))
                         {
                             lbl.Content = "T" + placeCtr.ToString();
                         }
@@ -327,8 +327,8 @@ namespace C_Sharp_Golfer_Simulation
                             placeCtr = golfercount + 1;
                             //Check if tied with golfer below you on leaderboard. The long clause is to make sure that if you have the same playoff score,
                             //but made it a hole farther in sudden death than them, you don't get a 'T' by your place if you shouldn't.
-                            if (((golfers[golfercount].totalscore == golfers[golfercount + 1].totalscore) && !playoffFlag) ||
-                                ((golfers[golfercount].playoffscore == golfers[golfercount + 1].playoffscore) && playoffFlag && (golfercount + 1 < playoffGolfers.Count)))
+                            if (((golfers[golfercount].TotalScore == golfers[golfercount + 1].TotalScore) && !playoffFlag) ||
+                                ((golfers[golfercount].PlayoffScore == golfers[golfercount + 1].PlayoffScore) && playoffFlag && (golfercount + 1 < playoffGolfers.Count)))
                             {
                                 lbl.Content = "T" + placeCtr.ToString();
                             }
@@ -347,26 +347,26 @@ namespace C_Sharp_Golfer_Simulation
         }   //End setPlaceLabels()
 
 
-        //Set the nationality flags displayed for each golfer
+        //Set the Nationality flags displayed for each golfer
         private void setFlagImages()
         {
             golfercount = 0;
 
             foreach (Image img in mainGrid.Children.OfType<Image>().Where(img => img.Name.StartsWith("imgFlag")))
             {
-                if (golfers[golfercount].nationality == "Spain")
+                if (golfers[golfercount].Nationality == "Spain")
                 {
                     flagFileName = "Spain.png";
                 }
-                else if (golfers[golfercount].nationality == "South Africa")
+                else if (golfers[golfercount].Nationality == "South Africa")
                 {
                     flagFileName = "South Africa.png";
                 }
-                else if (golfers[golfercount].nationality == "England")
+                else if (golfers[golfercount].Nationality == "England")
                 {
                     flagFileName = "England.png";
                 }
-                else if (golfers[golfercount].nationality == "Northern Ireland")
+                else if (golfers[golfercount].Nationality == "Northern Ireland")
                 {
                     flagFileName = "Ulster.png";
                 }
@@ -375,7 +375,7 @@ namespace C_Sharp_Golfer_Simulation
                     flagFileName = "USA.png";
                 }
 
-                img.Source = new BitmapImage(new Uri("Resources/" + flagFileName, UriKind.Relative));
+                img.Source = new BitmapImage(new Uri("../Resources/" + flagFileName, UriKind.Relative));
                 golfercount++;
             }
 
@@ -388,7 +388,7 @@ namespace C_Sharp_Golfer_Simulation
             golfercount = 0;
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))
             {
-                lbl.Content = golfers[golfercount].name;
+                lbl.Content = golfers[golfercount].Name;
                 golfercount++;
             }
         }
@@ -406,27 +406,27 @@ namespace C_Sharp_Golfer_Simulation
                 {
                     if (thruRoundCtr == 0)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].totalscore);
+                        labelScoreSetter(lbl, golfers[golfercount].TotalScore);
                     }
                     else if (thruRoundCtr == 1)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].rd1score);
+                        labelScoreSetter(lbl, golfers[golfercount].Rd1Score);
                     }
                     else if (thruRoundCtr == 2)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].rd2score);
+                        labelScoreSetter(lbl, golfers[golfercount].Rd2Score);
                     }
                     else if (thruRoundCtr == 3)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].rd3score);
+                        labelScoreSetter(lbl, golfers[golfercount].Rd3Score);
                     }
                     else if (thruRoundCtr == 4)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].rd4score);
+                        labelScoreSetter(lbl, golfers[golfercount].Rd4Score);
                     }
                     else if (golfercount < playoffGolfers.Count)
                     {
-                        labelScoreSetter(lbl, golfers[golfercount].playoffscore);
+                        labelScoreSetter(lbl, golfers[golfercount].PlayoffScore);
                     }
                     golfercount++;
                 }

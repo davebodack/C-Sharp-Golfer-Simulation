@@ -8,27 +8,27 @@ namespace C_Sharp_Golfer_Simulation
 {
     class Golfer
     {
-        public string name;
-        public string nationality;
-        public int totalscore;
-        public int rd1score;
-        public int rd2score;
-        public int rd3score;
-        public int rd4score;
-        public int playoffscore;
-        public int holesplayed;
+        public string Name;
+        public string Nationality;
+        public int TotalScore;
+        public int Rd1Score;
+        public int Rd2Score;
+        public int Rd3Score;
+        public int Rd4Score;
+        public int PlayoffScore;
+        public int HolesPlayed;
 
-        public Golfer(string newname, string newnationality)
+        public Golfer(string newName, string newNationality)
         {
-            name = newname;
-            nationality = newnationality;
-            totalscore = 0;
-            rd1score = 0;
-            rd2score = 0;
-            rd3score = 0;
-            rd4score = 0;
-            playoffscore = 0;
-            holesplayed = 0;
+            Name = newName;
+            Nationality = newNationality;
+            TotalScore = 0;
+            Rd1Score = 0;
+            Rd2Score = 0;
+            Rd3Score = 0;
+            Rd4Score = 0;
+            PlayoffScore = 0;
+            HolesPlayed = 0;
         }
     }
 }
