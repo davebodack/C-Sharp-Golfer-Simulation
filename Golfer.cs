@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace C_Sharp_Golfer_Simulation
 {
-    class Golfer
+    public class Golfer
     {
-        public string Name;
-        public string Nationality;
-        public int TotalScore;
-        public int Rd1Score;
-        public int Rd2Score;
-        public int Rd3Score;
-        public int Rd4Score;
-        public int PlayoffScore;
-        public int HolesPlayed;
+        public string Name { get; set; }
+        public string Nationality { get; set; }
+        public int TotalScore { get; set; }
+        public int Rd1Score { get; set; }
+        public int Rd2Score { get; set; }
+        public int Rd3Score { get; set; }
+        public int Rd4Score { get; set; }
+        public int PlayoffScore { get; set; }
+        public int HolesPlayed { get; set; }
 
-        public Golfer(string newName, string newNationality)
+        public Golfer()
         {
-            Name = newName;
-            Nationality = newNationality;
+            Name = "";
+            Nationality = "";
             TotalScore = 0;
             Rd1Score = 0;
             Rd2Score = 0;

@@ -40,37 +40,17 @@ namespace C_Sharp_Golfer_Simulation
 
 
         //Initializes the form based on the golfer list selected in MainWindow, populates the Name labels.
-        public Leaderboard(string[] golfernames)
+        public Leaderboard(List<Golfer> selectedGolfers)
         {
             InitializeComponent();
+            
+            for (int i = 0; i < selectedGolfers.Count; i++)
+            {
+                golfers[i] = selectedGolfers[i];
+            }
 
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-
-            for (int i = 0; i < 10; i++)
-            {
-                //This manual checking will go away when we have a way of reading in files that have the players' nationalities.
-                if ((golfernames[i] == "Seve Ballesteros") || (golfernames[i] == "Jon Rahm"))
-                {
-                    golfers[i] = new Golfer(golfernames[i], "Spain");
-                }
-                else if (golfernames[i] == "Tyrrell Hatton")
-                {
-                    golfers[i] = new Golfer(golfernames[i], "England");
-                }
-                else if (golfernames[i] == "Gary Player")
-                {
-                    golfers[i] = new Golfer(golfernames[i], "South Africa");
-                }
-                else if (golfernames[i] == "Rory McIlroy")
-                {
-                    golfers[i] = new Golfer(golfernames[i], "Northern Ireland");
-                }
-                else
-                {
-                    golfers[i] = new Golfer(golfernames[i], "USA");
-                }
-            }
 
             int j = 0;
             foreach (Label lbl in mainGrid.Children.OfType<Label>().Where(lbl => lbl.Name.StartsWith("lblName")))

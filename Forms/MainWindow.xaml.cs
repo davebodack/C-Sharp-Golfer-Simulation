@@ -11,7 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Diagnostics;
+using System.IO;
 
 namespace C_Sharp_Golfer_Simulation
 {
@@ -20,48 +23,47 @@ namespace C_Sharp_Golfer_Simulation
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        string[] golfersModern = new string[] { "Dustin Johnson", "Justin Thomas", "Jon Rahm", "Xander Schauffele", "Bryson DeChambeau",
-                                                "Collin Morikawa", "Rory McIlroy", "Patrick Reed", "Tyrrell Hatton", "Webb Simpson" };
-        
-        string[] golfersLegendary = new string[] { "Jack Nicklaus", "Tiger Woods", "Sam Snead", "Ben Hogan", "Gary Player",
-                                                   "Arnold Palmer", "Walter Hagen", "Phil Mickelson", "Tom Watson", "Seve Ballesteros" };
-
-        string[] golfersLeaderboard = new string[10];
+        string jsonContentsLegendary; 
+        string jsonContentsModern;
+        List<Golfer> modernGolfers; 
+        List<Golfer> legendaryGolfers;
+        List<Golfer> selectedGolfers;
 
         public MainWindow()
         {
+            jsonContentsModern = File.ReadAllText("../../JSON Files/modernGolfers.json");
+            jsonContentsLegendary = File.ReadAllText("../../JSON Files/legendaryGolfers.json");
+            modernGolfers = JsonSerializer.Deserialize<List<Golfer>>(jsonContentsModern);
+            legendaryGolfers = JsonSerializer.Deserialize<List<Golfer>>(jsonContentsLegendary);
+
             InitializeComponent();
         }
 
         private void radModern_Checked(object sender, RoutedEventArgs e)
         {
             listGolfers.Items.Clear();
-            foreach (string golfer in golfersModern)
+            foreach (Golfer golfer in modernGolfers)
             {
-                listGolfers.Items.Add(golfer);
+                listGolfers.Items.Add(golfer.Name);
             }
+            selectedGolfers = modernGolfers;
+            btnChooseGolfers.IsEnabled = true;
         }
 
         private void RadLegendary_Checked(object sender, RoutedEventArgs e)
         {
             listGolfers.Items.Clear();
-            foreach (string golfer in golfersLegendary)
+            foreach (Golfer golfer in legendaryGolfers)
             {
-                listGolfers.Items.Add(golfer);
+                listGolfers.Items.Add(golfer.Name);
             }
+            selectedGolfers = legendaryGolfers;
+            btnChooseGolfers.IsEnabled = true;
         }
 
         private void btnChooseGolfers_Click(object sender, RoutedEventArgs e)
         {
-            int i = 0;
-            foreach (string golferName in listGolfers.Items)
-            {
-                golfersLeaderboard[i] = golferName;
-                i++;
-            }
-
-            var frmLeaderboard = new Leaderboard(golfersLeaderboard);
+            var frmLeaderboard = new Leaderboard(selectedGolfers);
             frmLeaderboard.Show();
             this.Hide();
         }
