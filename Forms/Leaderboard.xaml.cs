@@ -60,9 +60,10 @@ namespace C_Sharp_Golfer_Simulation
             }
         }
 
+
         //Handles clicking the Start Simulation button, starts the timer ticking.
-        private void btnStartSim_Click(object sender, RoutedEventArgs e)
-        {            
+        private void startSimulation()
+        {
             if (btnStartSim.Content.ToString() == "Return to Main Menu")
             {
                 lblPlayoffHeader.Visibility = Visibility.Hidden;
@@ -73,7 +74,7 @@ namespace C_Sharp_Golfer_Simulation
             else
             {
                 holesElapsed = 0;
-                
+
                 if (roundCtr == 1)
                 {
                     lblLeaderboard.Content = "Leaderboard- First Round";
@@ -93,7 +94,6 @@ namespace C_Sharp_Golfer_Simulation
                 else
                 {
                     lblLeaderboard.Content = "Leaderboard- Sudden Death Playoff";
-                    playoffFlag = true;
 
                     if (golfers[0].TotalScore == golfers[1].TotalScore)
                     {
@@ -116,8 +116,14 @@ namespace C_Sharp_Golfer_Simulation
                 btnStartSim.Visibility = Visibility.Hidden;
                 stackSimSpeed.Visibility = Visibility.Visible;
             }
-            
-        }   //End btnStartSim_Click()
+        }
+
+
+        //Calls startSimulation, which actually handles starting the sim
+        private void btnStartSim_Click(object sender, RoutedEventArgs e)
+        {
+            startSimulation();  
+        }
 
 
         //Generates the random scores on a hole, calls the set label functions which populate the labels
@@ -169,34 +175,19 @@ namespace C_Sharp_Golfer_Simulation
                 //If we've finished one of the four rounds
                 else
                 {
-                    timer.Stop();
                     roundCtr++;
-                    btnStartSim.Visibility = Visibility.Visible;
-                    stackSimSpeed.Visibility = Visibility.Hidden;
-                    
-                    if (roundCtr == 2)
+                    if (MainWindow.PauseAfterRound)
                     {
-                        btnStartSim.Content = "Begin Second Round";
+                        timer.Stop();
+                        setStartButton(true); 
                     }
-                    else if (roundCtr == 3)
+                    else     //If not pausing between rounds
                     {
-                        btnStartSim.Content = "Begin Third Round";
-                    }
-                    else if (roundCtr == 4)
-                    {
-                        btnStartSim.Content = "Begin Fourth Round";
-                    }
-                    else if (golfers[0].TotalScore == golfers[1].TotalScore)
-                    {
-                        lblPlayoffHeader.Visibility = Visibility.Visible;
-                        btnStartSim.Content = "Begin Playoff";
-                    }
-                    else
-                    {
-                        btnStartSim.Content = "Return to Main Menu";
-                    }          
-                }
-            }
+                        setStartButton(false);
+                        startSimulation();
+                    }                              
+                }   //end if finished one of four rounds
+            }   //end if (!playoffFlag)
 
             //If we're computing the playoff
             else
@@ -244,15 +235,46 @@ namespace C_Sharp_Golfer_Simulation
                 {
                     //Executed when playoff has finished
                     timer.Stop();
-                    btnStartSim.Visibility = Visibility.Visible;
-                    stackSimSpeed.Visibility = Visibility.Hidden;
-                    btnStartSim.Content = "Return to Main Menu";
+                    setStartButton(true);
                 }
                 
-
-            }
-           
+            }     
         }   //End Timer_Tick()
+
+
+        //Sets btnStartSim.Content, makes button and Sim Speed stack visible or invisible
+        //Also sets playoffFlag if there's a tie
+        private void setStartButton(bool makeButtonVisible)
+        {
+            if (makeButtonVisible)
+            {
+                btnStartSim.Visibility = Visibility.Visible;
+                stackSimSpeed.Visibility = Visibility.Hidden;
+            }           
+
+            if (roundCtr == 2)
+            {
+                btnStartSim.Content = "Begin Second Round";
+            }
+            else if (roundCtr == 3)
+            {
+                btnStartSim.Content = "Begin Third Round";
+            }
+            else if (roundCtr == 4)
+            {
+                btnStartSim.Content = "Begin Fourth Round";
+            }
+            else if ((golfers[0].TotalScore == golfers[1].TotalScore) && (golfers[0].PlayoffScore == golfers[1].PlayoffScore))
+            {
+                playoffFlag = true;
+                lblPlayoffHeader.Visibility = Visibility.Visible;
+                btnStartSim.Content = "Begin Playoff";
+            }
+            else
+            {
+                btnStartSim.Content = "Return to Main Menu";
+            }
+        }
 
 
         //Fills in the place on the leaderboard each golfer occupies (first, second, third, etc.)

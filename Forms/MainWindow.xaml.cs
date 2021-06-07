@@ -25,6 +25,7 @@ namespace C_Sharp_Golfer_Simulation
     {
         string jsonContentsLegendary; 
         string jsonContentsModern;
+        public static bool PauseAfterRound;
         List<Golfer> modernGolfers; 
         List<Golfer> legendaryGolfers;
         List<Golfer> selectedGolfers;
@@ -63,6 +64,9 @@ namespace C_Sharp_Golfer_Simulation
 
         private void btnChooseGolfers_Click(object sender, RoutedEventArgs e)
         {
+            if ((bool)chkPauseRound.IsChecked) PauseAfterRound = true;
+            else PauseAfterRound = false;
+
             var frmLeaderboard = new Leaderboard(selectedGolfers);
             frmLeaderboard.Show();
             this.Hide();
