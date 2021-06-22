@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -92,7 +95,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\Leaderboard.xaml.cs" />
+    <Compile Include="Forms\LeaderboardModel.cs" />
+    <Compile Include="Forms\LeaderboardViewModel.cs" />
     <Compile Include="Forms\MainWindow.xaml.cs" />
+    <Compile Include="Forms\MainWindowViewModel.cs" />
     <Compile Include="Golfer.cs" />
   </ItemGroup>
   <ItemGroup>

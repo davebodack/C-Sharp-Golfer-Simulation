@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace C_Sharp_Golfer_Simulation
 {
@@ -40,13 +41,13 @@ namespace C_Sharp_Golfer_Simulation
 
 
         //Initializes the form based on the golfer list selected in MainWindow, populates the Name labels.
-        public Leaderboard(List<Golfer> selectedGolfers)
+        public Leaderboard(ObservableCollection<Golfer> SelectedGolfers)
         {
             InitializeComponent();
             
-            for (int i = 0; i < selectedGolfers.Count; i++)
+            for (int i = 0; i < SelectedGolfers.Count; i++)
             {
-                golfers[i] = selectedGolfers[i];
+                golfers[i] = SelectedGolfers[i];
             }
 
             timer.Interval = TimeSpan.FromSeconds(1);

@@ -23,13 +23,19 @@
         <Label Content="Select Golfers" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
         <Label Content="Settings" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
 
-        <RadioButton x:Name="radModern" Content="Modern Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="radModern_Checked"/>
+        <RadioButton x:Name="radModern" Content="Modern Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="1" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="radModern_Checked" IsChecked="True"/>
         <RadioButton x:Name="radLegendary" Content="Legendary Golfers" HorizontalAlignment="Left" Margin="40,0,0,0" Grid.Row="2" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="28" Checked="RadLegendary_Checked"/>
-        <ListBox x:Name="listGolfers" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="20" Margin="10,0,10,0"/>
+        <ListView x:Name="listGolfers" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" FontSize="20" Margin="10,0,10,0" ItemsSource="{Binding SelectedGolfers}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <CheckBox x:Name="chkPauseRound" Content="Pause After Round" Grid.Column="2" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="28" VerticalContentAlignment="Center"/>
 
-        <Button x:Name="btnChooseGolfers" Content="Prepare Match" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="36" Click="btnChooseGolfers_Click" IsEnabled="False"/>
+        <Button x:Name="btnChooseGolfers" Content="Prepare Match" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center" FontSize="36" Click="btnChooseGolfers_Click"/>
 
     </Grid>
 </Window>
